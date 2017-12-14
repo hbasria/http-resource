@@ -1,6 +1,7 @@
 import requests
 import six
 
+from dictutils import AttrDict
 from .utils import import_module
 
 
@@ -145,7 +146,7 @@ class HttpResource(object):
     def _iterator(self):
         results = self._fetch()
 
-        for row in self.transport.results_iter(results):
+        for row in self.results_iter(results):
             yield row
 
     def get_auth(self, ):
@@ -198,3 +199,13 @@ class HttpResource(object):
     def post(self, *args, **params):
         self.request.set_method('post')
         return list(self._iterator())
+
+    def results_iter(self, response, **kwargs):
+        results = response.json()
+
+        if type(results) is dict:
+            if 'result' in results:
+                results = results.get('result')
+
+        for result in results:
+            yield AttrDict(result)
