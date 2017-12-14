@@ -7,7 +7,7 @@ with open('README.md') as fp:
 
 setup(
     name='http-resource',
-    version='0.1.2',
+    version='0.1.3',
     description='http resource',
     long_description=long_description,
     author='Hasan Basri',
@@ -16,7 +16,7 @@ setup(
     keywords='http resource',
     url='https://github.com/hbasria/http-resource',
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
-    install_requires=['requests~=2.18.3'],
+    install_requires=['requests~=2.18.3', 'py_dictutils~=0.1.0'],
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
